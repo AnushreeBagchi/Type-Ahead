@@ -1,0 +1,15 @@
+.body{
+    display: flex;
+    flex-direction: column;
+}
+
+.search{
+    justify-content: center;
+    align-content: center;
+    width: 25%;
+    height: 3em;
+    border: 2px solid #dcdc2e;
+    background-color: #dcdc2e;
+    color: #25b1a5;
+    font-size:2em;
+}
