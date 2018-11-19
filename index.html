@@ -9,9 +9,7 @@
             <input class='search' type='text' placeholder='City or State' data-bind='textInput: searchInput, event: {keypress : findMatch}' >
            
             <ul class='suggestions' data-bind="foreach : matchedArray">
-                <!-- <li class='list'> Filter for a city </li> -->
-                <!-- <li class='list'> or state</li> -->
-                <li class='list' data-bind="text:city"></li>                
+                <li class='list'  data-bind="text:city+': '+state , click:onClick" ></li>                
             </ul>
         </div>
         <script src="js/lib/knockout-3.2.0.js"></script>

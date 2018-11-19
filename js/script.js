@@ -5,26 +5,30 @@ const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb
 function ViewModel(){
 var self=this;
 self.cities=[];
-fetch(endpoint).then(blob=>blob.json()).then(data=>cities.push(...data)).then(()=>{
-  self.findMatch();
-});
-
+fetch(endpoint).then(blob=>blob.json()).then(data=>cities.push(...data));
 
 self.searchInput=ko.observable();
 self.matchedArray=ko.observableArray();
-// self.matchedArray= ko.computed(function (){
-//             return  self.cities.filter(place=> place.city.match(self.searchInput()) || place.state.match(self.searchInput()));
-//             },self);
-
+      
 self.findMatch = function (){
   self.matchedArray.removeAll();
   setTimeout(() => {
     self.matchedArray(self.cities.filter(place=> place.city.match(self.searchInput()) || place.state.match(self.searchInput())));
   }, 1)
  
-  return true;
+  return true; 
+};
+
+self.onClick= function (arg){
+  self.searchInput(arg.city+': '+arg.state);
+  self.matchedArray.removeAll();
 }
 
 }
 
 ko.applyBindings(ViewModel);
+
+// Updates required:
+// 1. DIsplay blank array Before
+// 2. Handle backspace
+// 3. Handle case sensitive
