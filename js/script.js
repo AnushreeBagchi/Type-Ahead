@@ -5,20 +5,22 @@ const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb
 function ViewModel(){
 var self=this;
 self.cities=[];
-fetch(endpoint).then(blob=>blob.json()).then(data=>cities.push(...data));
+fetch(endpoint).then(blob=>blob.json()).then(data=>cities.push(...data)); // fetch data from the server and pushing the data to cities array
 
 self.searchInput=ko.observable();
 self.matchedArray=ko.observableArray();
       
 self.findMatch = function (){
-  self.matchedArray.removeAll();
+  self.matchedArray.removeAll(); // clear matched array
+  
   setTimeout(() => {
-    self.matchedArray(self.cities.filter(place=> place.city.match(self.searchInput()) || place.state.match(self.searchInput())));
+    const regex= new RegExp(self.searchInput(),'i'); //for matching case insensitive search input //global insensitive
+    self.matchedArray(self.cities.filter(place=> place.city.match(regex) || place.state.match(regex)));
   }, 1)
- 
-  return true; 
+  return true;  //required for keypress event in knockout
 };
 
+// On clicking on the suggestion list
 self.onClick= function (arg){
   self.searchInput(arg.city+': '+arg.state);
   self.matchedArray.removeAll();
@@ -28,7 +30,3 @@ self.onClick= function (arg){
 
 ko.applyBindings(ViewModel);
 
-// Updates required:
-// 1. DIsplay blank array Before
-// 2. Handle backspace
-// 3. Handle case sensitive

@@ -6,7 +6,7 @@
     </head>
     <body>
         <div class='body'>
-            <input class='search' type='text' placeholder='City or State' data-bind='textInput: searchInput, event: {keypress : findMatch}' >
+            <input class='search' type='text' placeholder='City or State' data-bind='textInput: searchInput, event: {keydown : findMatch}' >
            
             <ul class='suggestions' data-bind="foreach : matchedArray">
                 <li class='list'  data-bind="text:city+': '+state , click:onClick" ></li>                
