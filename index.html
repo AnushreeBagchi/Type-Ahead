@@ -1,16 +1,20 @@
 <html>
     <head>
         <title>Type Ahead</title>
+        <meta charset="UTF-8">
         <link rel='stylesheet' href='style.css'>
     </head>
     <body>
         <div class='body'>
-            <input class='search' type='text' placeholder='City or State'>
-            <ul class='suggestions'>
-                <li> Filter for a city </li>
-                <li> or state</li>
+            <input class='search' type='text' placeholder='City or State' data-bind='textInput: searchInput, event: {keypress : findMatch}' >
+           
+            <ul class='suggestions' data-bind="foreach : matchedArray">
+                <!-- <li class='list'> Filter for a city </li> -->
+                <!-- <li class='list'> or state</li> -->
+                <li class='list' data-bind="text:city"></li>                
             </ul>
         </div>
-        <script src='script.js'></script>
+        <script src="js/lib/knockout-3.2.0.js"></script>
+        <script src='js/script.js'></script>
     </body>
 </html>

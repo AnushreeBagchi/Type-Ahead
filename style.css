@@ -1,15 +1,41 @@
 .body{
     display: flex;
     flex-direction: column;
+    align-items: center;
+    
 }
 
-.search{
-    justify-content: center;
-    align-content: center;
+.search{ 
     width: 25%;
-    height: 3em;
-    border: 2px solid #dcdc2e;
+    height: 2em;
+    border: 2px solid #25b1a5;
     background-color: #dcdc2e;
     color: #25b1a5;
     font-size:2em;
 }
+
+.suggestions {
+    list-style: none;
+    margin: 0;
+    width: 25%;
+    padding: 0%;
+
+}
+
+.list{
+    box-sizing: border-box;
+    border: 1px solid #dcdc2e;
+    background-color: #25b1a5;
+    color: #dcdc2e;
+    height: 2em;
+    font-size: 2em;
+}
+
+.suggestions li:nth-child(even) {
+    transform: perspective(100px) rotateX(3deg) translateY(2px) scale(1.001);
+    
+  }
+  .suggestions li:nth-child(odd) {
+    transform: perspective(100px) rotateX(-3deg) translateY(3px);
+    
+  }
